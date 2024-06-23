@@ -2,49 +2,46 @@
 
 Code for the "Build Your Own Search Engine" workshop
 
-Register here: https://lu.ma/jsyob4df
+[Register here](https://lu.ma/jsyob4df)
 
-
-What we will do: 
+What we will do:
 
 * Use Zoomcamp FAQ documents
-    * [DE Zoomcamp](https://docs.google.com/document/d/19bnYs80DwuUimHM65UV3sylsCn2j1vziPOwzBwQrebw/edit)
-    * [ML Zoomcamp](https://docs.google.com/document/d/1LpPanc33QJJ6BSsyxVg-pWNMplal84TdZtq10naIhD8/edit)
-    * [MLOps Zoomcamp](https://docs.google.com/document/d/12TlBfhIiKtyBv8RnsoJR6F72bkPDGEvPOItJIxaEzE0/edit)
-* Create a search engine for retreiving these documents 
-* Later the results can be used for a [Q&A RAG system](https://github.com/alexeygrigorev/llm-rag-workshop) 
-* [Reference implementation for text search](https://github.com/alexeygrigorev/minsearch)
-
+  * [DE Zoomcamp](https://docs.google.com/document/d/19bnYs80DwuUimHM65UV3sylsCn2j1vziPOwzBwQrebw/edit)
+  * [ML Zoomcamp](https://docs.google.com/document/d/1LpPanc33QJJ6BSsyxVg-pWNMplal84TdZtq10naIhD8/edit)
+  * [MLOps Zoomcamp](https://docs.google.com/document/d/12TlBfhIiKtyBv8RnsoJR6F72bkPDGEvPOItJIxaEzE0/edit)
+  * Create a search engine for retrieving these documents
+  * Later the results can be used for a [Q&A RAG system](https://github.com/alexeygrigorev/llm-rag-workshop)
+  * [Referenced implementation for text search](https://github.com/alexeygrigorev/minsearch)
 
 ## Workshop Outline
 
 1. **Preparing the Environment**
 2. **Basics of Text Search**
-    - Basics of Information Retrieval
-    - Introduction to vector spaces, bag of words, and TF-IDF
+    * Basics of Information Retrieval
+    * Introduction to vector spaces, bag of words, and TF-IDF
 3. **Implementing Basic Text Search**
-    - TF-IDF scoring with sklearn
-    - Keyword filtering using pandas
-    - Creating a class for relevance search
+    * TF-IDF scoring with sklearn
+    * Keyword filtering using pandas
+    * Creating a class for relevance search
 4. **Embeddings and Vector Search**
-    - Vector embeddings
-    - Word2Vec and other approaches for word embeddings
-    - LSA (Latent Semantic Analysis) for document embeddings
-    - Implementing vector search with LSA
-    - BERT embeddings 
+    * Vector embeddings
+    * Word2Vec and other approaches for word embeddings
+    * LSA (Latent Semantic Analysis) for document embeddings
+    * Implementing vector search with LSA
+    * BERT embeddings
 5. **Combining Text and Vector Search** (5 minutes)
 6. **Practical Implementation Aspects and Tools** (10 minutes)
-    - Real-world implementation tools:
+    * Real-world implementation tools:
         * inverted indexes for text search
         * LSH for vector search (using random projections)
-    - Technologies:
+    * Technologies:
         * Lucene/Elasticsearch for text search
-        * FAISS and and other vector databases
-
+        * FAISS and other vector databases
 
 ## 1. Preparing the environment
 
-In the workshop, we'll use Github Codespaces, but you can use any env
+In the workshop, we'll use GitHub Codespaces, but you can use any env
 
 We need to install the following libraries:
 
@@ -52,7 +49,7 @@ We need to install the following libraries:
 pip install requests pandas scikit-learn jupyter
 ```
 
-Start jupyter:
+Start Jupyter:
 
 ```bash
 jupyter notebook
@@ -77,7 +74,7 @@ for course in documents_raw:
         documents.append(doc)
 ```
 
-Creating the dataframe:
+Creating the DataFrame:
 
 ```python
 import pandas as pd
@@ -88,16 +85,14 @@ df.head()
 
 ## 2. Basics of Text Search
 
-- **Information Retrieval** - The process of obtaining relevant information from large datasets based on user queries.
-- **Vector Spaces** - A mathematical representation where text is converted into vectors (points in space) allowing for quantitative comparison.
-- **Bag of Words** - A simple text representation model treating each document as a collection of words disregarding grammar and word order but keeping multiplicity.
-- **TF-IDF (Term Frequency-Inverse Document Frequency)** - A statistical measure used to evaluate how important a word is to a document in a collection or corpus. It increases with the number of times a word appears in the document but is offset by the frequency of the word in the corpus.
-
+* **Information Retrieval** - The process of obtaining relevant information from large datasets based on user queries.
+* **Vector Spaces** - A mathematical representation where text is converted into vectors (points in space) allowing for quantitative comparison.
+* **Bag of Words** - A simple text representation model treating each document as a collection of words disregarding grammar and word order but keeping multiplicity.
+* **TF-IDF (Term Frequency-Inverse Document Frequency)** - A statistical measure used to evaluate how important a word is to a document in a collection or corpus. It increases with the number of times a word appears in the document but is offset by the frequency of the word in the corpus.
 
 ## 3. Implementing Basic Text Search
 
 Let's implement it ourselves.
-
 
 ### Keyword filtering
 
@@ -191,7 +186,6 @@ X.dot(q.T).toarray()
 Watch [this linear algebra refresher](https://github.com/DataTalksClub/machine-learning-zoomcamp/blob/master/01-intro/08-linear-algebra.md) if you're a bit rusty on matrix multiplication (don't worry - it's developer friendly)
 
 Bottom line: it's a very fast and effective method of computing similarities
-
 
 In practice, we usually use cosine similarity:
 
@@ -348,7 +342,6 @@ index.search(
 
 You can fild the implementation here too if you want to use it: https://github.com/alexeygrigorev/minsearch
 
-
 **Note**: this is a toy example for illustrating how relevance search works. It's not meant to be used in production.
 
 ## 4. Embeddings and Vector Search
@@ -357,10 +350,10 @@ Problem with text - only exact matches. How about synonyms?
 
 ### What are Embeddings?
 
-- **Conversion to Numbers:** Embeddings transform different words, sentences and documents into dense vectors (arrays with numbers).
-- **Capturing Similarity:** They ensure similar items have similar numerical vectors, illustrating their closeness in terms of characteristics.
-- **Dimensionality Reduction:** Embeddings reduce complex characteristics into vectors.
-- **Use in Machine Learning:** These numerical vectors are used in machine learning models for tasks such as recommendations, text analysis, and pattern recognition.
+* **Conversion to Numbers:** Embeddings transform different words, sentences and documents into dense vectors (arrays with numbers).
+* **Capturing Similarity:** They ensure similar items have similar numerical vectors, illustrating their closeness in terms of characteristics.
+* **Dimensionality Reduction:** Embeddings reduce complex characteristics into vectors.
+* **Use in Machine Learning:** These numerical vectors are used in machine learning models for tasks such as recommendations, text analysis, and pattern recognition.
 
 ### SVD
 
@@ -370,11 +363,11 @@ This way we still don't preserve the word order (because it wasn't in the Bag-of
 
 We won't go into mathematics, it's sufficient to know that SVD "compresses" our input vectors in such a way that as much as possible of the original information is retained. 
 
-This compression is lossy compression - meaning that we won't be able to restore the 100% of the original vector, but the result is close enough.
+This compression is a lossy compression - meaning that we won't be able to restore 100% of the original vector, but the result is close enough.
 
 Example with images:
 
-<img src="http://habrastorage.org/files/855/a65/c62/855a65c624dc4174b526fb5e03b98555.png" />
+![Example Image]("http://habrastorage.org/files/855/a65/c62/855a65c624dc4174b526fb5e03b98555.png")
 
 Let's use the vectorizer for the "text" field and turn it into embeddings 
 
@@ -471,8 +464,8 @@ model.eval()  # Set the model to evaluation mode if not training
 
 We need:
 
-- tokenizer - for turning text into vectors
-- model - for compressing the text into embeddings
+* tokenizer - for turning text into vectors
+* model - for compressing the text into embeddings
 
 First, we tokenize the text
 
@@ -506,7 +499,6 @@ X_emb = sentence_embeddings.numpy()
 ```
 
 Note that if use a GPU, first you need to move your tensors to CPU
-
 
 ```python
 sentence_embeddings_cpu = sentence_embeddings.cpu()
@@ -569,7 +561,6 @@ def compute_embeddings(texts, batch_size=8):
 ```
 
 And use it:
-
 
 ```python
 X_text = compute_embeddings(df['text'].tolist())
